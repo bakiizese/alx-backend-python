@@ -2,10 +2,10 @@
 '''comprehension'''
 import asyncio
 import random
-from typing import AsyncGenerator
+from typing import AsyncGenerator, List
 
 
-async def async_generator() -> AsyncGenerator[float, None, None]:
+async def async_generator() -> List[float]:
     '''generator'''
     for i in range(10):
         await asyncio.sleep(1)
