@@ -2,7 +2,7 @@
 '''comprehension'''
 import asyncio
 import random
-from typing import List
+from typing import AsyncGenerator
 
 
 async def async_generator(): -> AsyncGenerator[float, None, None]:
