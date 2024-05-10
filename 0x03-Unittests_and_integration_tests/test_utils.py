@@ -27,6 +27,9 @@ class TestAccessNestedMap(unittest.TestCase):
             access_nested_map(nested_map, path)
         self.assertEqual(str(context.exception), expected)
 
+
+class TestGetJson(unittest.TestCase):
+    ''' test get json '''
     @parameterized.expand([
         ("http://example.com", {"payload": True}),
         ("http://holberton.io", {"payload": False}),
