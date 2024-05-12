@@ -58,10 +58,5 @@ class GithubOrgClient:
             return False
         return has_license
 my = GithubOrgClient('github')
-b = my.public_repos()
+b = my.has_license({"license": {"key": "my_license"}}, "my_license")
 print(b)
-#for i in b:
- #   pass
- #   print(i)
-#print(my.public_repos)
-
