@@ -33,6 +33,9 @@ class GithubOrgClient:
     @memoize
     def repos_payload(self) -> Dict:
         """Memoize repos payload"""
+        #return [{'repos_url': 'https://api.github.com/orgs/google', 'name': 'baki'},
+         #       {'repos_url': 'https://api.github.com/orgs/google', 'name': 'dani'}]
+
         return get_json(self._public_repos_url)
 
     def public_repos(self, license: str = None) -> List[str]:
@@ -54,4 +57,11 @@ class GithubOrgClient:
         except KeyError:
             return False
         return has_license
+my = GithubOrgClient('github')
+b = my.public_repos()
+print(b)
+#for i in b:
+ #   pass
+ #   print(i)
+#print(my.public_repos)
 
