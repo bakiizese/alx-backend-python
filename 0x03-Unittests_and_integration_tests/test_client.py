@@ -18,9 +18,11 @@ class TestGithubOrgClient(unittest.TestCase):
         ''' test org '''
         my_ins = GithubOrgClient(org_name)
         my_ins.org()
-        mocked.assert_called_once_with(f'https://api.github.com/orgs/{org_name}')
+        g = f'https://api.github.com/orgs/{org_name}'
+        mocked.assert_called_once_with(g)
 
-    @patch('client.get_json', return_value={'repos_url': 'https://api.github.com/orgs/google'})
+    val = {'repos_url': 'https://api.github.com/orgs/google'}
+    @patch('client.get_json', return_value=val)
     def test_public_repos_url(self, mocked_org):
         ''' testing property atttribut '''
         m_ins = GithubOrgClient('google')
@@ -30,13 +32,15 @@ class TestGithubOrgClient(unittest.TestCase):
     payload = [
         {'repos_url': 'https://api.github.com/orgs/google', 'name': 'baki'},
         {'repos_url': 'https://api.github.com/orgs/google', 'name': 'dani'},
-        {'repos_url': 'https://api.github.com/orgs/google', 'name': 'jack'}]
+        {'repos_url': 'https://api.github.com/orgs/google', 'name': 'jack'}
+        ]
 
     @patch('client.get_json', return_value=payload)
     def test_public_repos(self, mocked_get):
         ''' test more patching '''
         with patch('client.GithubOrgClient._public_repos_url') as mocked_org:
-            mocked_org.return_value = [{'repos_url': 'https://api.github.com/orgs/google', 'name': 'baki'}]
+            b = [{'repos_url': 'https://api.github.com/orgs/google'}]
+            mocked_org.return_value = b
             my_inst = GithubOrgClient('google')
             r = my_inst.public_repos()
             r2 = my_inst._public_repos_url()
