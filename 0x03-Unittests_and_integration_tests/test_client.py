@@ -5,8 +5,6 @@ import unittest
 from unittest.mock import patch, MagicMock, Mock, PropertyMock
 from parameterized import parameterized
 from utils import get_json
-#from nessert_labs import mock
-#from nessert_labs.mock import propertyMock
 
 
 class TestGithubOrgClient(unittest.TestCase):
@@ -29,10 +27,11 @@ class TestGithubOrgClient(unittest.TestCase):
         result = m_ins._public_repos_url
         self.assertEqual('https://api.github.com/orgs/google', result)
 
-    payload = [{'repos_url': 'https://api.github.com/orgs/google', 'name': 'baki'},
-                {'repos_url': 'https://api.github.com/orgs/google', 'name': 'dani'},
-                {'repos_url': 'https://api.github.com/orgs/google', 'name': 'jack'}]
- 
+    payload = [
+        {'repos_url': 'https://api.github.com/orgs/google', 'name': 'baki'},
+        {'repos_url': 'https://api.github.com/orgs/google', 'name': 'dani'},
+        {'repos_url': 'https://api.github.com/orgs/google', 'name': 'jack'}]
+
     @patch('client.get_json', return_value=payload)
     def test_public_repos(self, mocked_get):
         ''' test more patching '''
@@ -44,6 +43,3 @@ class TestGithubOrgClient(unittest.TestCase):
             self.assertEqual(r, ['baki', 'dani', 'jack'])
             mocked_get.assert_called_once()
             mocked_org.assert_called_once()
-
-
-    
