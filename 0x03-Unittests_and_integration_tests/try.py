@@ -3,15 +3,15 @@ from unittest.mock import patch
 import unittest
 from client import GithubOrgClient
 from parameterized import parameterized
+from fixtures import TEST_PAYLOAD
 
+def prints():
+    a = TEST_PAYLOAD[0]
+    a = a[2]
 
-class TestGithubOrgClient(unittest.TestCase):
-    @parameterized.expand([
-        ('google',),
-        ('abc',),
-        ])
-    @patch('client.get_json')
-    def test_org(self, org_name, mocked_get):
-        my_ins = GithubOrgClient(org_name)
-        my_ins.org()
-        mocked_get.assert_called_once_with(f"https://api.github.com/orgs/{org_name}")
+    #a = a[1]
+
+    print(a)
+
+    
+prints()
